@@ -1,0 +1,55 @@
+query SearchProduct(
+  $first: Int, 
+  $before: String, 
+  $after: String, 
+  $deleted: Boolean, 
+  $title_Icontains: String, 
+  $category_Id: ID, 
+  $address_Icontains: String, 
+  $condition_Id: ID
+) {
+  searchProduct(
+    first: $first, 
+    before: $before, 
+    after: $after, 
+    deleted: $deleted, 
+    title_Icontains: $title_Icontains, 
+    category_Id: $category_Id, 
+    address_Icontains: $address_Icontains, 
+    condition_Id: $condition_Id
+  ) {
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        id
+        title
+        address
+        category {
+          name
+        }
+        condition {
+          description
+        }
+        description
+        price
+        photos {
+          edges {
+            node {
+              url
+            }
+          }
+        }
+        quantityForSale
+        standardShippingPrice
+        createdAt
+        active
+      }
+    }
+  }
+}
